@@ -1,6 +1,7 @@
 package socialgaming2022.app.player;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -12,36 +13,37 @@ public class Player {
     private String id;
 
     // Firebase UID
-    private String firebaseUID;
+    @Indexed(unique = true)
+    private final String firebaseUID;
 
     // Player nickname
     private String nickname;
 
-    // Friendlist
+    // Friend list
     private List<String> friendsFirebaseUIDs;
 
+    // Games played
+    private int gamesPlayed;
+
+    // Games won
+    private int gamesWon;
+
     // Constructor
-    public Player(String id, String firebaseUID, String nickname, List<String> friendsFirebaseUIDs) {
+    public Player(String id, String firebaseUID, String nickname, List<String> friendsFirebaseUIDs, int gamesPlayed, int gamesWon) {
         this.id = id;
         this.firebaseUID = firebaseUID;
         this.nickname = nickname;
         this.friendsFirebaseUIDs = friendsFirebaseUIDs;
+        this.gamesPlayed = gamesPlayed;
+        this.gamesWon = gamesWon;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getFirebaseUID() {
         return firebaseUID;
-    }
-
-    public void setFirebaseUID(String firebaseUID) {
-        this.firebaseUID = firebaseUID;
     }
 
     public String getNickname() {
@@ -58,5 +60,21 @@ public class Player {
 
     public void setFriendsFirebaseUIDs(List<String> friendsFirebaseUIDs) {
         this.friendsFirebaseUIDs = friendsFirebaseUIDs;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    public int getGamesWon() {
+        return gamesWon;
+    }
+
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
     }
 }

@@ -7,5 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends MongoRepository<Player, String> {
+    Optional<Player> findPlayerById(String id);
     Optional<Player> findPlayerByFirebaseUID(String firebaseUID);
 }
