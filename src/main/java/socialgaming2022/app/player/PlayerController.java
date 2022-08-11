@@ -15,7 +15,7 @@ public class PlayerController {
         this.playerRepository = playerRepository;
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public List<Player> getPlayers() {
         return playerRepository.findAll();
     }
